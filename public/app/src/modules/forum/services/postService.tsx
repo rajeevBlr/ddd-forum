@@ -25,7 +25,7 @@ export class PostService extends BaseAPI implements IPostService {
 
   public async getPostBySlug (slug: string): Promise<APIResponse<Post>> {
     try {
-      const accessToken = this.authService.getToken('access-token');
+      const accessToken = await this.authService.getToken('access-token');
       const isAuthenticated = !!accessToken === true;
       const auth = {
         authorization: accessToken

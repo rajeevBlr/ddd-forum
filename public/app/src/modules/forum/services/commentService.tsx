@@ -48,11 +48,13 @@ export class CommentService extends BaseAPI implements ICommentService {
   async getCommentsBySlug (slug: string, offset?: number): Promise<APIResponse<Comment[]>> {
     try {
       const accessToken = this.authService.getToken('access-token');
-      const isAuthenticated = !!accessToken === true;
-      const auth = {
+      var isAuthenticated = !!accessToken === true;
+      var auth = {
         authorization: accessToken
       };
 
+       // Wait for user to resume.
+      debugger;
       const response = await this.get('/comments', { offset, slug }, 
       isAuthenticated ? auth : null
     );
